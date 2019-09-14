@@ -18,6 +18,14 @@
 #define FN      MO(L_FN)
 #define FN_CAPS LT(L_FN, KC_CAPS)
 
+// Clear mods, perform action, restore mods
+#define CLEAN_MODS(action) {       \
+        uint8_t mods = get_mods(); \
+        clear_mods();              \
+        action;                    \
+        set_mods(mods);            \
+    }
+
 enum layers {
     L_BASE,
     L_FN,
@@ -35,7 +43,9 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 
     switch (keycode) {
     case CLEAR:
-        SEND_STRING(SS_LCTRL("a") SS_TAP(X_DELETE));
+        CLEAN_MODS(
+            SEND_STRING(SS_LCTRL("a") SS_TAP(X_DELETE));
+        )
         break;
 
     // case CLR_EQL:
