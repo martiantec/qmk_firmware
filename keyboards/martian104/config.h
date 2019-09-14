@@ -250,3 +250,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Bootmagic Lite key configuration */
 // #define BOOTMAGIC_LITE_ROW 0
 // #define BOOTMAGIC_LITE_COLUMN 0
+
+/* Mousekey configuration */
+#define MOUSEKEY_DELAY             50
+#define MOUSEKEY_INTERVAL          15
+#define MOUSEKEY_MAX_SPEED         4
+#define MOUSEKEY_TIME_TO_MAX       50
+#define MOUSEKEY_WHEEL_MAX_SPEED   1
+#define MOUSEKEY_WHEEL_TIME_TO_MAX 50
+
+/* Tapping configuration */
+#define PERMISSIVE_HOLD
+#define TAPPING_TERM    200
+#define TAPPING_TOGGLE  2
