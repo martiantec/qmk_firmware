@@ -1,12 +1,17 @@
-# martian104
+# MartianTec Martian104
 
-![martian104](imgur.com image replace me!)
+Full size keyboard with dirtproof chassis and custom domes. Presented at CES 2020.
 
-A short description of the keyboard/project
+Keyboard Maintainer: [Konstantin Đorđević](https://github.com/vomindoraan)
 
-Keyboard Maintainer: [MartianTec](https://github.com/yourusername)  
-Hardware Supported: The PCBs, controllers supported  
-Hardware Availability: links to where you can find this hardware
+Hardware Supported:
+- AT90USB1286-MU _(microcontroller)_
+- RN4871 _(BLE module)_
+- IS31FL3737 _(LED matrix driver)_
+- LP5521 _(RGB indicator driver)_
+- DS2746G+ _(battery monitor)_
+
+Hardware Availability: See [martiantec.com](https://martiantec.com) for more information.
 
 Make example for this keyboard (after setting up your build environment):
 
