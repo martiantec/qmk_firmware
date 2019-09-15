@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PRODUCT      Martian104
 #define DESCRIPTION  Full size keyboard with dirtproof chassis and custom domes
 
-/* Matrix configuration */
+/* Key matrix configuration */
 #define DIODE_DIRECTION ROW2COL
 #define MATRIX_COLS     21
 #define MATRIX_ROWS     6
@@ -37,6 +37,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Keypress configuration */
 #define DEBOUNCE   5
 #define FORCE_NKRO
+
+/* LED matrix configuration */
+#define LED_DRIVER_ADDR_1    0b1110100
+#define LED_DRIVER_COUNT     1
+#define LED_DRIVER_LED_COUNT 104
 
 /* Mouse keys configuration */
 #define MOUSEKEY_DELAY             50
