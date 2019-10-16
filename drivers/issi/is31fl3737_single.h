@@ -1,6 +1,6 @@
 /* Copyright 2017 Jason Williams
  * Copyright 2018 Jack Humbert
- * Copyright 2018 Yiancar
+ * Copyright 2019 Konstantin Đorđević
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,21 +22,19 @@
 
 typedef struct is31_led {
     uint8_t driver : 2;
-    uint8_t r;
-    uint8_t g;
-    uint8_t b;
+    uint8_t v;
 } __attribute__((packed)) is31_led;
 
-extern const is31_led g_is31_leds[DRIVER_LED_TOTAL];
+extern const is31_led g_is31_leds[LED_DRIVER_LED_TOTAL];
 
 void IS31FL3737_init(uint8_t addr);
 void IS31FL3737_write_register(uint8_t addr, uint8_t reg, uint8_t data);
 void IS31FL3737_write_pwm_buffer(uint8_t addr, uint8_t *pwm_buffer);
 
-void IS31FL3737_set_color(int index, uint8_t red, uint8_t green, uint8_t blue);
-void IS31FL3737_set_color_all(uint8_t red, uint8_t green, uint8_t blue);
+void IS31FL3737_set_value(int index, uint8_t value);
+void IS31FL3737_set_value_all(uint8_t value);
 
-void IS31FL3737_set_led_control_register(uint8_t index, bool red, bool green, bool blue);
+void IS31FL3737_set_led_control_register(uint8_t index, bool value);
 
 // This should not be called from an interrupt
 // (eg. from a timer interrupt).

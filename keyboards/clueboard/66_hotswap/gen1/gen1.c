@@ -16,9 +16,9 @@
 #include "gen1.h"
 
 #ifdef LED_MATRIX_ENABLE
-    #include "is31fl3731-simple.h"
+    #include "is31fl3731_single.h"
 
-const is31_led g_is31_leds[LED_DRIVER_LED_COUNT] = {
+const is31_led g_is31_leds[LED_DRIVER_LED_TOTAL] = {
 /* Refer to IS31 manual for these locations
  *  driver
  *  |   LED address
@@ -96,7 +96,7 @@ const is31_led g_is31_leds[LED_DRIVER_LED_COUNT] = {
     {0, C5_15}  // k97 KC_RGHT
 };
 
-const led_matrix g_leds[LED_DRIVER_LED_COUNT] = {
+const led_matrix g_leds[LED_DRIVER_LED_TOTAL] = {
 
     /*{row | col << 4}
       |            LED_ROW_COL(row, col)

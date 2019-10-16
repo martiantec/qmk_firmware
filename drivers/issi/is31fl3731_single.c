@@ -15,6 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#include "is31fl3731_single.h"
+#include "i2c_master.h"
 
 #ifdef __AVR__
 #    include <avr/interrupt.h>
@@ -23,14 +25,6 @@
 #else
 #    include "wait.h"
 #endif
-
-#include <stdint.h>
-#include <stdbool.h>
-#include <string.h>
-#include "is31fl3731-simple.h"
-#include "i2c_master.h"
-#include "progmem.h"
-#include "print.h"
 
 // This is a 7-bit address, that gets left-shifted and bit 0
 // set to 0 for write, 1 for read (as per I2C protocol)
@@ -77,17 +71,8 @@ uint8_t g_twi_transfer_buffer[20];
 uint8_t g_pwm_buffer[LED_DRIVER_COUNT][144];
 bool    g_pwm_buffer_update_required = false;
 
-/* There's probably a better way to init this... */
-#if LED_DRIVER_COUNT == 1
 uint8_t g_led_control_registers[LED_DRIVER_COUNT][18] = {{0}};
-#elif LED_DRIVER_COUNT == 2
-uint8_t g_led_control_registers[LED_DRIVER_COUNT][18] = {{0}, {0}};
-#elif LED_DRIVER_COUNT == 3
-uint8_t g_led_control_registers[LED_DRIVER_COUNT][18] = {{0}, {0}, {0}};
-#elif LED_DRIVER_COUNT == 4
-uint8_t g_led_control_registers[LED_DRIVER_COUNT][18] = {{0}, {0}, {0}, {0}};
-#endif
-bool g_led_control_registers_update_required = false;
+bool    g_led_control_registers_update_required       = false;
 
 // This is the bit pattern in the LED control registers
 // (for matrix A, add one to register for matrix B)
@@ -197,7 +182,7 @@ void IS31FL3731_init(uint8_t addr) {
 }
 
 void IS31FL3731_set_value(int index, uint8_t value) {
-    if (index >= 0 && index < LED_DRIVER_LED_COUNT) {
+    if (index >= 0 && index < LED_DRIVER_LED_TOTAL) {
         is31_led led = g_is31_leds[index];
 
         // Subtract 0x24 to get the second index of g_pwm_buffer
@@ -207,7 +192,7 @@ void IS31FL3731_set_value(int index, uint8_t value) {
 }
 
 void IS31FL3731_set_value_all(uint8_t value) {
-    for (int i = 0; i < LED_DRIVER_LED_COUNT; i++) {
+    for (int i = 0; i < LED_DRIVER_LED_TOTAL; i++) {
         IS31FL3731_set_value(i, value);
     }
 }

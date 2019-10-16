@@ -16,9 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#pragma once
 
-#ifndef LED_MATRIX_H
-#define LED_MATRIX_H
+#include <quantum.h>
+#include <stdbool.h>
+#include <stdint.h>
 
 #ifndef BACKLIGHT_ENABLE
 #    error You must define BACKLIGHT_ENABLE with LED_MATRIX_ENABLE
@@ -41,7 +43,7 @@ typedef struct led_matrix {
     uint8_t modifier : 1;
 } __attribute__((packed)) led_matrix;
 
-extern const led_matrix g_leds[LED_DRIVER_LED_COUNT];
+extern const led_matrix g_leds[LED_DRIVER_LED_TOTAL];
 
 typedef struct {
     uint8_t index;
@@ -123,5 +125,3 @@ typedef struct {
 } led_matrix_driver_t;
 
 extern const led_matrix_driver_t led_matrix_driver;
-
-#endif
