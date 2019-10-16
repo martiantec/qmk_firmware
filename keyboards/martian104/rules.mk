@@ -1,4 +1,4 @@
-# MCU name
+# MCU selection
 MCU = at90usb1286
 
 # Bootloader selection
@@ -7,7 +7,8 @@ MCU = at90usb1286
 #   Atmel DFU    atmel-dfu
 #   LUFA DFU     lufa-dfu
 #   QMK DFU      qmk-dfu
-#   atmega32a    bootloadHID
+#   ATmega32A    bootloadHID
+#   ATmega328P   USBasp
 BOOTLOADER = halfkay
 
 # If you don't know the bootloader type, then you can specify the
@@ -19,17 +20,18 @@ BOOTLOADER = halfkay
 #   USBaspLoader        2048
 # OPT_DEFS += -DBOOTLOADER_SIZE=4096
 
-# Build Options
-#   change yes to no to disable
-BACKLIGHT_ENABLE   = no
-BLUETOOTH_ENABLE   = no
-BOOTMAGIC_ENABLE   = no
-COMMAND_ENABLE     = yes
-CONSOLE_ENABLE     = yes
-EXTRAKEY_ENABLE    = yes
-# LED_MATRIX_ENABLE  = yes
-MOUSEKEY_ENABLE    = yes
-NKRO_ENABLE        = yes
-RGBLIGHT_ENABLE    = no
-SPACE_CADET_ENABLE = yes
-UNICODE_ENABLE     = no
+# Build options
+BACKLIGHT_ENABLE  = no
+BLUETOOTH_ENABLE  = no
+BOOTMAGIC_ENABLE  = no
+COMMAND_ENABLE    = yes
+CONSOLE_ENABLE    = yes
+EXTRAKEY_ENABLE   = yes
+# LED_MATRIX_ENABLE = yes
+MOUSEKEY_ENABLE   = yes
+NKRO_ENABLE       = yes
+RGBLIGHT_ENABLE   = no
+UNICODE_ENABLE    = no
+
+# Optimizations
+EXTRAFLAGS += -flto
