@@ -38,6 +38,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DEBOUNCE   5
 #define FORCE_NKRO
 
+/* LED matrix configuration */
+#define BACKLIGHT_LEVELS     7
+#define LED_DRIVER_ADDR_1    0b1110100
+#define LED_DRIVER_COUNT     1
+#define LED_DRIVER_LED_TOTAL 104
+
 /* Mouse keys configuration */
 #define MOUSEKEY_DELAY             50
 #define MOUSEKEY_INTERVAL          15
