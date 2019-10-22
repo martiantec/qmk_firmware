@@ -1,6 +1,6 @@
 # MartianTec Martian104
 
-Full size keyboard with dirtproof chassis and custom domes. Presented at CES 2020.
+Full size keyboard with dirtproof housing and custom domes. Presented at CES 2020.
 
 Keyboard Maintainer: [Konstantin Đorđević](https://github.com/vomindoraan)
 
