@@ -1,23 +1,10 @@
 # MCU selection
 MCU = at90usb1286
+# Internal oscillator is used
+F_CPU = 8000000
 
 # Bootloader selection
-#   Teensy       halfkay
-#   Pro Micro    caterina
-#   Atmel DFU    atmel-dfu
-#   LUFA DFU     lufa-dfu
-#   QMK DFU      qmk-dfu
-#   ATmega32A    bootloadHID
-#   ATmega328P   USBasp
-BOOTLOADER = halfkay
-
-# If you don't know the bootloader type, then you can specify the
-# Boot Section Size in *bytes* by uncommenting out the OPT_DEFS line
-#   Teensy halfKay      512
-#   Teensy++ halfKay    1024
-#   Atmel DFU loader    4096
-#   LUFA bootloader     4096
-#   USBaspLoader        2048
+BOOTLOADER = qmk-dfu
 # OPT_DEFS += -DBOOTLOADER_SIZE=4096
 
 # Build options
