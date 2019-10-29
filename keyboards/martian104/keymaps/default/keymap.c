@@ -43,9 +43,11 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 
     switch (keycode) {
     case CLEAR:
-        CLEAN_MODS(
-            SEND_STRING(SS_LCTRL("a") SS_TAP(X_DELETE));
-        )
+        if (record->event.pressed) {
+            CLEAN_MODS(
+                SEND_STRING(SS_LCTRL("a") SS_TAP(X_DELETE));
+            )
+        }
         break;
 
     // case CLR_EQL:
