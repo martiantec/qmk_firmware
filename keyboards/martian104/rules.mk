@@ -1,10 +1,8 @@
 # MCU selection
 MCU = at90usb1286
-# Internal oscillator is used
-F_CPU = 8000000
 
 # Bootloader selection
-BOOTLOADER = qmk-dfu
+BOOTLOADER = halfkay
 # OPT_DEFS += -DBOOTLOADER_SIZE=4096
 
 # Build options
@@ -14,7 +12,7 @@ BOOTMAGIC_ENABLE  = no
 COMMAND_ENABLE    = yes
 CONSOLE_ENABLE    = yes
 EXTRAKEY_ENABLE   = yes
-# LED_MATRIX_ENABLE = IS31FL3737
+LED_MATRIX_ENABLE = IS31FL3731
 MOUSEKEY_ENABLE   = yes
 NKRO_ENABLE       = yes
 RGBLIGHT_ENABLE   = no
