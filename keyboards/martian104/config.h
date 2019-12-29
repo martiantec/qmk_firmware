@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DEVICE_VER   0x0001
 #define MANUFACTURER MartianTec
 #define PRODUCT      Martian104
-#define DESCRIPTION  Full size keyboard with dirtproof housing and custom domes
+#define DESCRIPTION  Full-size keyboard with dirtproof housing and custom conductive domes
 
 /* Key matrix configuration */
 #define DIODE_DIRECTION ROW2COL
@@ -32,17 +32,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MATRIX_ROWS     6
 #define MATRIX_COL_PINS { A0, A1, A2, A3, A4, A5, A6, A7, B0, B4, B5, B6, B7, C0, C1, C2, C3, C4, C5, C6, C7 }
 #define MATRIX_ROW_PINS { F7, F6, F5, F4, F3, F2 }
-#define UNUSED_PINS     { D4, D6, D7, E3, E6, F0, F1 }
+#define UNUSED_PINS     { D4, D6, E0, E1, E2, E3, E4, E5, E6, E7, F1 }
 
 /* Keypress configuration */
 #define DEBOUNCE   5
 #define FORCE_NKRO
 
-/* LED matrix configuration */
+/* Backlight configuration */
 #define BACKLIGHT_LEVELS     7
 #define LED_DRIVER_ADDR_1    0b1110100
 #define LED_DRIVER_COUNT     1
 #define LED_DRIVER_LED_TOTAL 104
+#define LED_CAPS_LOCK_PIN    D7
 
 /* Mouse keys configuration */
 #define MOUSEKEY_DELAY             50

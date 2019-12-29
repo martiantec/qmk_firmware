@@ -36,11 +36,7 @@ enum custom_keycodes {
     // CLR_EQL,
 };
 
-bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
-    if (!process_record_user(keycode, record)) {
-        return false;
-    }
-
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     case CLEAR:
         if (record->event.pressed) {

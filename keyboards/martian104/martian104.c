@@ -30,3 +30,19 @@ const is31_led g_is31_leds[LED_DRIVER_LED_TOTAL] = {
     {0, A_1}, {0, A_2}, {0, A_3}, {0, A_4}, {0, A_5}, {0, A_6}, {0, A_7}, {0, A_8},
 };
 #endif
+
+void matrix_init_kb(void) {
+    matrix_init_user();
+    led_init_ports();
+}
+
+void led_init_ports(void) {
+    setPinOutput(LED_CAPS_LOCK_PIN);
+}
+
+bool led_update_kb(led_t led_state) {
+    if (led_update_user(led_state)) {
+        writePin(LED_CAPS_LOCK_PIN, led_state.caps_lock);  // On is high due to driver transistor
+    }
+    return true;
+}

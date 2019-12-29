@@ -1,15 +1,12 @@
 # MartianTec Martian104
 
-Full size keyboard with dirtproof housing and custom domes. Presented at CES 2020.
+Full-size keyboard with dirtproof housing and custom conductive domes. Presented at CES 2020.
 
 Keyboard Maintainer: [Konstantin Đorđević](https://github.com/vomindoraan)
 
 Hardware Supported:
-- AT90USB1286-MU _(microcontroller)_
-- RN4871 _(BLE module)_
+- AT90USB1286 _(microcontroller)_
 - IS31FL3737 _(LED matrix driver)_
-- LP5521 _(RGB indicator driver)_
-- DS2746G+ _(battery monitor)_
 
 Hardware Availability: See [martiantec.com](https://martiantec.com) for more information.
 

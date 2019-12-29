@@ -1,10 +1,9 @@
 # MCU selection
 MCU = at90usb1286
-# Internal oscillator is used
-F_CPU = 8000000
+# F_CPU = 8000000
 
 # Bootloader selection
-BOOTLOADER = qmk-dfu
+BOOTLOADER = atmel-dfu
 # OPT_DEFS += -DBOOTLOADER_SIZE=4096
 
 # Build options
