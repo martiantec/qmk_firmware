@@ -6,6 +6,7 @@ Keyboard Maintainer: [Konstantin Đorđević](https://github.com/vomindoraan)
 
 Hardware Supported:
 - AT90USB1286 _(microcontroller)_
+- BT121 _(Bluetooth module)_
 - IS31FL3737 _(LED matrix driver)_
 
 Hardware Availability: See [martiantec.com](https://martiantec.com) for more information.
