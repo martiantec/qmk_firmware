@@ -39,11 +39,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define FORCE_NKRO
 
 /* Backlight configuration */
-#define BACKLIGHT_LEVELS     7
-#define LED_DRIVER_ADDR_1    0b1110100
-#define LED_DRIVER_COUNT     1
-#define LED_DRIVER_LED_TOTAL 104
-#define LED_CAPS_LOCK_PIN    D7
+#define BACKLIGHT_LEVELS  7
+#define DRIVER_ADDR_1     0b1010000
+#define DRIVER_ADDR_2     0b1010000
+#define DRIVER_COUNT      1
+#define DRIVER_LED_TOTAL  35
+#define LED_CAPS_LOCK_PIN D7
 
 /* Mouse keys configuration */
 #define MOUSEKEY_DELAY             50
