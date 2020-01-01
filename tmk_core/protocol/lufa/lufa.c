@@ -565,30 +565,30 @@ static void send_keyboard(report_keyboard_t *report) {
 #    ifdef MODULE_ADAFRUIT_BLE
         adafruit_ble_send_keys(report->mods, report->keys, sizeof(report->keys));
 #    elif MODULE_RN42
-        bluefruit_serial_send(0xFD);
-        bluefruit_serial_send(0x09);
-        bluefruit_serial_send(0x01);
-        bluefruit_serial_send(report->mods);
-        bluefruit_serial_send(report->reserved);
+        bt_serial_send(0xFD);
+        bt_serial_send(0x09);
+        bt_serial_send(0x01);
+        bt_serial_send(report->mods);
+        bt_serial_send(report->reserved);
         for (uint8_t i = 0; i < KEYBOARD_REPORT_KEYS; i++) {
-            bluefruit_serial_send(report->keys[i]);
+            bt_serial_send(report->keys[i]);
         }
 #    elif MODULE_BT121
-        bluefruit_serial_send(0xFD);                // Packet header
-        bluefruit_serial_send(REPORT_ID_KEYBOARD);  // Payload size varies based on report ID
-        bluefruit_serial_send(report->mods);
-        bluefruit_serial_send(report->reserved);
+        bt_serial_send(0xFD);                // Packet header
+        bt_serial_send(REPORT_ID_KEYBOARD);  // Payload size varies based on report ID
+        bt_serial_send(report->mods);
+        bt_serial_send(report->reserved);
         for (uint8_t i = 0; i < KEYBOARD_REPORT_KEYS; i++) {
-            bluefruit_serial_send(report->keys[i]);
+            bt_serial_send(report->keys[i]);
         }
-        bluefruit_serial_send(keyboard_leds());
-        bluefruit_serial_send(0xDF);                // Packet trailer
+        bt_serial_send(keyboard_leds());
+        bt_serial_send(0xDF);                // Packet trailer
 #    else  // Bluefruit EZ-Key
-        bluefruit_serial_send(0xFD);
-        bluefruit_serial_send(report->mods);
-        bluefruit_serial_send(report->reserved);
+        bt_serial_send(0xFD);
+        bt_serial_send(report->mods);
+        bt_serial_send(report->reserved);
         for (uint8_t i = 0; i < KEYBOARD_REPORT_KEYS; i++) {
-            bluefruit_serial_send(report->keys[i]);
+            bt_serial_send(report->keys[i]);
         }
 #    endif
     }
@@ -640,24 +640,24 @@ static void send_mouse(report_mouse_t *report) {
         // FIXME: mouse buttons
         adafruit_ble_send_mouse_move(report->x, report->y, report->v, report->h, report->buttons);
 #        elif MODULE_BT121
-        bluefruit_serial_send(0xFD);             // Packet header
-        bluefruit_serial_send(REPORT_ID_MOUSE);  // Payload size varies based on report ID
-        bluefruit_serial_send(report->buttons);
-        bluefruit_serial_send(report->x);
-        bluefruit_serial_send(report->y);
-        bluefruit_serial_send(report->v);
-        bluefruit_serial_send(report->h);
-        bluefruit_serial_send(0xDF);             // Packet trailer
+        bt_serial_send(0xFD);             // Packet header
+        bt_serial_send(REPORT_ID_MOUSE);  // Payload size varies based on report ID
+        bt_serial_send(report->buttons);
+        bt_serial_send(report->x);
+        bt_serial_send(report->y);
+        bt_serial_send(report->v);
+        bt_serial_send(report->h);
+        bt_serial_send(0xDF);             // Packet trailer
 #        else  // Bluefruit EZ-Key
-        bluefruit_serial_send(0xFD);
-        bluefruit_serial_send(0x00);
-        bluefruit_serial_send(0x03);
-        bluefruit_serial_send(report->buttons);
-        bluefruit_serial_send(report->x);
-        bluefruit_serial_send(report->y);
-        bluefruit_serial_send(report->v);  // should try sending the wheel v here
-        bluefruit_serial_send(report->h);  // should try sending the wheel h here
-        bluefruit_serial_send(0x00);
+        bt_serial_send(0xFD);
+        bt_serial_send(0x00);
+        bt_serial_send(0x03);
+        bt_serial_send(report->buttons);
+        bt_serial_send(report->x);
+        bt_serial_send(report->y);
+        bt_serial_send(report->v);  // should try sending the wheel v here
+        bt_serial_send(report->h);  // should try sending the wheel h here
+        bt_serial_send(0x00);
 #        endif
     }
 #    endif
@@ -689,13 +689,13 @@ static void send_system(uint16_t data) {
 #ifdef EXTRAKEY_ENABLE
 #    ifdef BLUETOOTH_ENABLE
 #        ifdef MODULE_BT121
-    bluefruit_serial_send(0xFD);              // Packet header
-    bluefruit_serial_send(REPORT_ID_SYSTEM);  // Payload size varies based on report ID
+    bt_serial_send(0xFD);              // Packet header
+    bt_serial_send(REPORT_ID_SYSTEM);  // Payload size varies based on report ID
     // uint16_t usage = data - SYSTEM_POWER_DOWN + 1;
     uint16_t usage = data;
-    bluefruit_serial_send(usage & 0xFF);
-    bluefruit_serial_send((usage >> 8) & 0xFF);
-    bluefruit_serial_send(0xDF);              // Packet trailer
+    bt_serial_send(usage & 0xFF);
+    bt_serial_send((usage >> 8) & 0xFF);
+    bt_serial_send(0xDF);              // Packet trailer
 #        endif
 #    endif
 
@@ -733,31 +733,31 @@ static void send_consumer(uint16_t data) {
         if (data == last_data) return;
         last_data       = data;
         uint16_t bitmap = CONSUMER2RN42(data);
-        bluefruit_serial_send(0xFD);
-        bluefruit_serial_send(0x03);
-        bluefruit_serial_send(0x03);
-        bluefruit_serial_send(bitmap & 0xFF);
-        bluefruit_serial_send((bitmap >> 8) & 0xFF);
+        bt_serial_send(0xFD);
+        bt_serial_send(0x03);
+        bt_serial_send(0x03);
+        bt_serial_send(bitmap & 0xFF);
+        bt_serial_send((bitmap >> 8) & 0xFF);
 #        elif MODULE_BT121
-        bluefruit_serial_send(0xFD);                // Packet header
-        bluefruit_serial_send(REPORT_ID_CONSUMER);  // Payload size varies based on report ID
-        bluefruit_serial_send(data & 0xFF);
-        bluefruit_serial_send((data >> 8) & 0xFF);
-        bluefruit_serial_send(0xDF);                // Packet trailer
+        bt_serial_send(0xFD);                // Packet header
+        bt_serial_send(REPORT_ID_CONSUMER);  // Payload size varies based on report ID
+        bt_serial_send(data & 0xFF);
+        bt_serial_send((data >> 8) & 0xFF);
+        bt_serial_send(0xDF);                // Packet trailer
 #        else  // Bluefruit EZ-Key
         static uint16_t last_data = 0;
         if (data == last_data) return;
         last_data       = data;
         uint16_t bitmap = CONSUMER2BLUEFRUIT(data);
-        bluefruit_serial_send(0xFD);
-        bluefruit_serial_send(0x00);
-        bluefruit_serial_send(0x02);
-        bluefruit_serial_send((bitmap >> 8) & 0xFF);
-        bluefruit_serial_send(bitmap & 0xFF);
-        bluefruit_serial_send(0x00);
-        bluefruit_serial_send(0x00);
-        bluefruit_serial_send(0x00);
-        bluefruit_serial_send(0x00);
+        bt_serial_send(0xFD);
+        bt_serial_send(0x00);
+        bt_serial_send(0x02);
+        bt_serial_send((bitmap >> 8) & 0xFF);
+        bt_serial_send(bitmap & 0xFF);
+        bt_serial_send(0x00);
+        bt_serial_send(0x00);
+        bt_serial_send(0x00);
+        bt_serial_send(0x00);
 #        endif
     }
 #    endif
@@ -992,7 +992,7 @@ int main(void) {
     sei();
 
 #if defined(MODULE_ADAFRUIT_EZKEY) || defined(MODULE_RN42) || defined(MODULE_BT121)
-    serial_init();
+    bt_serial_init();
 #endif
 
     /* wait for USB startup & debug output */
