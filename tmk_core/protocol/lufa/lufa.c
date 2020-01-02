@@ -290,6 +290,9 @@ void EVENT_USB_Device_Connect(void) {
         USB_Init();
         USB_Device_EnableSOFEvents();
     }
+#if defined(BLUETOOTH_ENABLE) && defined(BLUETOOTH_RESET_PIN)
+    // writePinLow(BLUETOOTH_RESET_PIN);
+#endif
 }
 
 /** \brief Event USB Device Connect
@@ -307,6 +310,9 @@ void EVENT_USB_Device_Disconnect(void) {
             USB_INT_Enable(USB_INT_VBUSTI);
         }
     */
+#if defined(BLUETOOTH_ENABLE) && defined(BLUETOOTH_RESET_PIN)
+    // writePinHigh(BLUETOOTH_RESET_PIN);
+#endif
 }
 
 /** \brief Event USB Device Connect
@@ -991,8 +997,13 @@ int main(void) {
     setup_usb();
     sei();
 
-#if defined(MODULE_ADAFRUIT_EZKEY) || defined(MODULE_RN42) || defined(MODULE_BT121)
+#ifdef BLUETOOTH_ENABLE
+#    if defined(MODULE_ADAFRUIT_EZKEY) || defined(MODULE_RN42) || defined(MODULE_BT121)
     bt_serial_init();
+#    endif
+#    ifdef BLUETOOTH_RESET_PIN
+    // setPinOutput(BLUETOOTH_RESET_PIN);
+#    endif
 #endif
 
     /* wait for USB startup & debug output */
@@ -1042,7 +1053,7 @@ int main(void) {
         rgblight_task();
 #endif
 
-#ifdef MODULE_ADAFRUIT_BLE
+#if defined(BLUETOOTH_ENABLE) && defined(MODULE_ADAFRUIT_BLE)
         adafruit_ble_task();
 #endif
 

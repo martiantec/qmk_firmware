@@ -34,17 +34,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MATRIX_ROW_PINS { F7, F6, F5, F4, F3, F2 }
 #define UNUSED_PINS     { D4, D6, E0, E1, E2, E3, E4, E5, E6, E7, F1 }
 
+/* Pin configuration */
+#define BLUETOOTH_RESET_PIN D5
+#define LED_CAPS_LOCK_PIN   D7
+
 /* Keypress configuration */
 #define DEBOUNCE   5
 #define FORCE_NKRO
 
 /* Backlight configuration */
-#define BACKLIGHT_LEVELS  7
-#define DRIVER_ADDR_1     0b1010000
-#define DRIVER_ADDR_2     0b1010000
-#define DRIVER_COUNT      1
-#define DRIVER_LED_TOTAL  35
-#define LED_CAPS_LOCK_PIN D7
+#define BACKLIGHT_LEVELS 7
+#define DRIVER_ADDR_1    0b1010000
+#define DRIVER_ADDR_2    0b1010000
+#define DRIVER_COUNT     1
+#define DRIVER_LED_TOTAL 35
 
 /* Mouse keys configuration */
 #define MOUSEKEY_DELAY             50
