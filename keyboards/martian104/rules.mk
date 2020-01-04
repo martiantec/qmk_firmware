@@ -19,7 +19,6 @@ RGB_MATRIX_ENABLE  = IS31FL3737
 MOUSEKEY_ENABLE    = yes
 NKRO_ENABLE        = no
 RGBLIGHT_ENABLE    = no
-UNICODE_ENABLE     = no
 
 # Optimizations
 EXTRAFLAGS += -flto

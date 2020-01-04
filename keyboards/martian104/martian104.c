@@ -66,3 +66,26 @@ bool led_update_kb(led_t led_state) {
     }
     return true;
 }
+
+bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
+    if (!process_record_user(keycode, record)) {
+        return false;
+    }
+
+#if !defined(UNICODE_ENABLE) && !defined(UNICODEMAP_ENABLE)
+    // Double-press compensation for spacebar actions
+    if (keycode & DPC_MASK) {
+        static uint16_t dpc_time;
+        static bool dpc_pressed;
+        // Allow only one press to be registered within DPC_PERIOD
+        if (timer_elapsed(dpc_time) > DPC_PERIOD || dpc_pressed != record->event.pressed) {
+            (record->event.pressed ? register_code16 : unregister_code16)(keycode & ~DPC_MASK);
+            dpc_time = timer_read();
+            dpc_pressed = record->event.pressed;
+        }
+        return false;
+    }
+#endif
+
+    return true;
+}

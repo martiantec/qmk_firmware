@@ -33,7 +33,6 @@ enum layers {
 
 enum custom_keycodes {
     CLEAR = SAFE_RANGE,
-    // CLR_EQL,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -45,14 +44,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             )
         }
         break;
-
-    // case CLR_EQL:
-    //     if (get_unicode_input_mode() == UC_OSX) {
-    //         (record->event.pressed ? register_code : unregister_code)(KC_PEQL);
-    //     } else {
-    //         SEND_STRING(SS_LCTRL("a") SS_TAP(X_DELETE));
-    //     }
-    //     break;
     }
 
     return true;
@@ -74,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * │LCtrl│LGu│LAlt │          Space          │RAlt │Fn │RCtrl│ │ ← │ ↓ │ → │ │  P0   │P. │   │
      * └─────┴───┴─────┴─────────────────────────┴─────┴───┴─────┘ └───┴───┴───┘ └───────┴───┴───┘
      */
-    [L_BASE] = LAYOUT(
+    [L_BASE] = LAYOUT_DPC(
         KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,           KC_PSCR, KC_SLCK, KC_PAUS,
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, KC_INS,  KC_HOME, KC_PGUP, KC_NLCK, KC_PEQL, KC_PSLS, KC_PAST,
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS, KC_DEL,  KC_END,  KC_PGDN, KC_P7,   KC_P8,   KC_P9,   KC_PMNS,
@@ -98,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * │     │   │     │           MW↓           │     │   │     │ │Hom│PgD│End│ │       │   │   │
      * └─────┴───┴─────┴─────────────────────────┴─────┴───┴─────┘ └───┴───┴───┘ └───────┴───┴───┘
      */
-    [L_FN] = LAYOUT(
+    [L_FN] = LAYOUT_DPC(
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, KC_MUTE,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, CLEAR,   KC_MPLY, KC_MSTP, KC_VOLU, _______, _______, _______, _______,
         _______, KC_BTN2, KC_MS_U, KC_BTN1, KC_BTN3, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MPRV, KC_MNXT, KC_VOLD, _______, _______, _______, _______,
