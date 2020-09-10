@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "nexus_dev.h"
+#include "battery.h"
 
 // #ifdef RGB_MATRIX_ENABLE
 //     #include "drivers/issi/is31fl3737.h"
@@ -44,16 +45,20 @@
 //     4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
 //     4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4
 // }};
-// #endif
-
-void matrix_init_kb(void) {
-// #ifdef RGB_MATRIX_ENABLE
+//
+// void keyboard_post_init_kb(void) {
 //     rgb_matrix_enable();
 //     rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
 //     rgb_matrix_sethsv(0, 0, 255);
+// }
 // #endif
-    matrix_init_user();
+
+void keyboard_pre_init_kb(void) {
+    // Potentially move this to matrix_init_kb() depending on perceived
+    // responsiveness during bootup
+    battery_init();
     led_init_ports();
+    keyboard_pre_init_user();
 }
 
 void led_init_ports(void) {

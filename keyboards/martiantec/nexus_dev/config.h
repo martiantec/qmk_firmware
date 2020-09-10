@@ -51,6 +51,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define DRIVER_COUNT     1
 // #define DRIVER_LED_TOTAL 35
 
+/* Battery monitor configuration */
+#define BATTERY_MONITOR_ADDR 0x6C
+
 /* Mouse keys configuration */
 #define MOUSEKEY_DELAY             50
 #define MOUSEKEY_INTERVAL          15
